@@ -1,14 +1,9 @@
 module.exports = {
-  // succeed,
-  // fail,
+  succeed,
+  fail,
   repair,
   get,
 };
-
-// - a `success(item)` method that accepts an `item` object and 
-//**returns a new item** object modified according to the rules defined 
-//by the client for enhancement success.
-
 
 // ### When enhancement succeeds
 
@@ -17,15 +12,15 @@ module.exports = {
 // - The durability of the item is not changed.
 
 
-// function succeed(item) {
-//   // return { ...item };
+function succeed(item) {
 
-//   if (item.enhancement === 20) {
-//     return { ...item }
-//   } else {
-//     return (...item, item.enhancement: item.enhancement + 1)
-//   }
-// }
+  if (item.enhancement >= 20) {
+    return { ...item }
+  } else {
+    item.enhancement += 1;
+    return { ...item }
+  }
+}
 
 // - a `fail(item)` method that accepts an `item` object and **returns a new item** 
 //object modified according to the rules defined by the client for enhancement failure.
@@ -37,24 +32,22 @@ module.exports = {
 // - If the item's enhancement level is greater than 16, the enhancement 
 //level decreases by 1 (17 goes down to 16, 18 goes down to 17).
 
-// function fail(item) {
-//   // return { ...item };
+function fail(item) {
 
-//   if (item.enhancement < 15) {
-//     return (...item, item.durability: item.durability -5 )
-//   } else if (item.enhancement >= 15 & item.enhancement < 17) {
-//     return (...item, item.durability: item.durability - 10 )
-//   } else if (item.enhancement > 16) {
-//     return (...item,
-//       item.durability: item.durability - 10,
-//         item.enhancement: item.enhancement - 1)
-//   }
+  if (item.enhancement < 15) {
+    item.durability -= 5;
+    return { ...item }
+  } else if (item.enhancement >= 15 & item.enhancement < 17) {
+    item.durability -= 10;
+    return { ...item }
+  } else if (item.enhancement > 16) {
+    item.durability -= 10;
+    item.enhancement -= 1;
+    return { ...item }
+  }
 
-// }
+}
 
-// - a `repair(item)` method that accepts an `item` object and 
-//**returns a new item** with the durability restored to 100. 
-//This method is the simplest of the three and would be a **good starting point** on this project.
 
 function repair(item) {
   item.durability = 100
