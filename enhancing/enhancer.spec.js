@@ -91,8 +91,7 @@ describe('enhancer.js', function () {
         })
     })
 
-    // - a `repair(item)` method that accepts an `item` object and **returns a new item** with the durability restored to 100.
-    //This method is the simplest of the three and would be a **good starting point** on this project.
+
     describe('repair', function () {
         const item = {
             'name': 'gunner',
@@ -144,7 +143,7 @@ describe('enhancer.js', function () {
             expect(isObject(item4)).toEqual(false);
 
             repair(item5);
-            expect(isObject(item5)).toEqual(false);
+            expect(() => isObject(item5).toThrow());
         })
 
 
@@ -165,13 +164,9 @@ describe('enhancer.js', function () {
             expect(hasProperties(item7)).toEqual(true);
 
             repair(item8);
-            expect(hasProperties(item8)).toEqual(false);
+            expect(() => hasProperties(item8).toThrow());
 
         })
-
-
-
-
 
     })
 
