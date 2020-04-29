@@ -5,30 +5,28 @@ it('should run the test', function () {
     expect(true).toBe(true);
 })
 
-
-
-
 describe('enhancer.js', function () {
-    const item = {
-        'name': 'gunner',
-        'durability': 60,
-        'enhancement': 6
-    }
 
-    const item2 = {
-        'name': 'ory',
-        'durability': 85,
-        'enhancement': 20
-    }
-    // - a `success(item)` method that accepts an `item` object and **returns a new item** object
-    // modified according to the rules defined by the client for enhancement success.
     describe('succeed', function () {
+
+        const item = {
+            'name': 'gunner',
+            'durability': 60,
+            'enhancement': 6
+        }
+
         it('should improve enhancement by 1', function () {
             succeed(item);
             expect(item.enhancement).toBe(7);
             expect(item.name).toBe('gunner');
             expect(item.durability).toBe(60);
         })
+
+        const item2 = {
+            'name': 'ory',
+            'durability': 85,
+            'enhancement': 20
+        }
 
         it('should not change enhancement when already at 20', function () {
             succeed(item2);
@@ -40,8 +38,6 @@ describe('enhancer.js', function () {
 
 
 
-    // - a `fail(item)` method that accepts an `item` object and **returns a new item** object 
-    //modified according to the rules defined by the client for enhancement failure.
     describe('fail', function () {
         const item = {
             'name': 'gunner',
@@ -80,6 +76,19 @@ describe('enhancer.js', function () {
             expect(item3.name).toBe('baker');
             expect(item3.durability).toBe(25);
         })
+
+        const item4 = {
+            'name': 'py',
+            'durability': 8,
+            'enhancement': 19
+        }
+
+        it('durability should not go below 0', function () {
+            fail(item4);
+            expect(item4.enhancement).toBe(18);
+            expect(item4.name).toBe('py');
+            expect(item4.durability).toBe(0);
+        })
     })
 
     // - a `repair(item)` method that accepts an `item` object and **returns a new item** with the durability restored to 100.
@@ -107,10 +116,10 @@ describe('enhancer.js', function () {
     })
 
 
-    // - a `get()` method for use when working on the stretch problem.
-    // describe('get', function () {
-    //     it.todo('')
-    // })
+
+    describe('get', function () {
+        it.todo('')
+    })
 
 
 })
