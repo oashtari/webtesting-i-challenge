@@ -106,13 +106,73 @@ describe('enhancer.js', function () {
             'enhancement': 20
         }
 
+        const item3 = [];
+        const item4 = 'hi';
+        const item5 = 45;
+
+        const item6 = {
+            'name': 'dog',
+            'durability': 34
+        }
+        const item7 = {
+            'name': 'cat',
+            'enhancement': 19
+        }
+
+        const item8 = {
+            'durability': 85,
+            'enhancement': 20
+        }
+
         it('should restore energy to 100', function () {
             repair(item);
             expect(item.durability).toBe(100);
             expect(item.name).toBe('gunner');
-            console.log('what is enhancement now', item.enhancement)
             expect(item.enhancement).toBe(6);
         })
+
+        it('should throw error if item is not an object', function () {
+
+            function isObject(variable) {
+                return Object.prototype.toString.call(variable) === '[object Object]'
+            }
+
+            repair(item3);
+            expect(isObject(item3)).toEqual(false);
+
+            repair(item4);
+            expect(isObject(item4)).toEqual(false);
+
+            repair(item5);
+            expect(isObject(item5)).toEqual(false);
+        })
+
+
+        it('should check to see if object has name, durability and enhancement', function () {
+
+            function hasProperties(variable) {
+                if (variable.name && variable.durability && variable.enhancement) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+            repair(item6);
+            expect(hasProperties(item6)).toEqual(false);
+
+            repair(item7);
+            expect(hasProperties(item7)).toEqual(true);
+
+            repair(item8);
+            expect(hasProperties(item8)).toEqual(false);
+
+        })
+
+
+
+
+
     })
 
 

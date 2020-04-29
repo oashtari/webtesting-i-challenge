@@ -23,13 +23,15 @@ function fail(item) {
       item.durability = 0;
     }
     return { ...item }
-  } else if (item.enhancement >= 15 & item.enhancement < 17) {
+  }
+  else if (item.enhancement >= 15 & item.enhancement < 17) {
     item.durability -= 10;
     if (item.durability < 0) {
       item.durability = 0;
     }
     return { ...item }
-  } else if (item.enhancement > 16) {
+  }
+  else if (item.enhancement > 16) {
     item.durability -= 10;
     item.enhancement -= 1;
     if (item.durability < 0) {
@@ -37,7 +39,6 @@ function fail(item) {
     }
     return { ...item }
   }
-
 }
 
 
